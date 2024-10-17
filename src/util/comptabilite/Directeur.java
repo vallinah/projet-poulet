@@ -4,11 +4,6 @@ public class Directeur {
     private int id;
     private String nom;
 
-    public Directeur(int id, String nom) {
-        this.id = id;
-        this.nom = nom;
-    }
-
     public int getId() {
         return id;
     }
@@ -24,5 +19,12 @@ public class Directeur {
     public void setNom(String nom) {
         this.nom = nom;
     }
-}
 
+
+    public Directeur(int id, String nom) {
+        this.setId(id);
+        this.setNom(nom);
+       
+    }
+
+}

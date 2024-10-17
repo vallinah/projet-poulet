@@ -1,12 +1,12 @@
-package util.comptabilite;
+package util.fournisseur;
 
-public class TypeCharge {
+public class Produit {
     private int id;
     private String nom;
 
-    public TypeCharge(int id, String nom) {
-        this.id = id;
-        this.nom = nom;
+    public Produit(int id, String nom) {
+        this.setId(id);
+        this.setNom(nom);
     }
 
     public int getId() {
@@ -24,5 +24,5 @@ public class TypeCharge {
     public void setNom(String nom) {
         this.nom = nom;
     }
-}
 
+}

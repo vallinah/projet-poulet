@@ -1,50 +1,48 @@
 package util.elevage;
 
-import java.math.BigDecimal;
-
 public class Poulet {
-    private int id;
-    private BigDecimal poidsInitial;
-    private BigDecimal poidsFinal;
-    private int idElevage;
+    private int id_poulet;
+    private double poids_initial;
+    private double poids_final;
+    private Elevage elevage;
 
-    public Poulet(int id, BigDecimal poidsInitial, BigDecimal poidsFinal, int idElevage) {
-        this.id = id;
-        this.poidsInitial = poidsInitial;
-        this.poidsFinal = poidsFinal;
-        this.idElevage = idElevage;
+    public Poulet(int id_poulet, double poids_initial, double poids_final, Elevage elevage) {
+        this.setId_poulet(id_poulet);
+        this.setPoids_initial(poids_initial);
+        this.setPoids_final(poids_final);
+        this.setElevage(elevage);
     }
 
-    public int getId() {
-        return id;
+    public int getId_poulet() {
+        return id_poulet;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_poulet(int id_poulet) {
+        this.id_poulet = id_poulet;
     }
 
-    public BigDecimal getPoidsInitial() {
-        return poidsInitial;
+    public double getPoids_initial() {
+        return poids_initial;
     }
 
-    public void setPoidsInitial(BigDecimal poidsInitial) {
-        this.poidsInitial = poidsInitial;
+    public void setPoids_initial(double poids_initial) {
+        this.poids_initial = poids_initial;
     }
 
-    public BigDecimal getPoidsFinal() {
-        return poidsFinal;
+    public double getPoids_final() {
+        return poids_final;
     }
 
-    public void setPoidsFinal(BigDecimal poidsFinal) {
-        this.poidsFinal = poidsFinal;
+    public void setPoids_final(double poids_final) {
+        this.poids_final = poids_final;
     }
 
-    public int getIdElevage() {
-        return idElevage;
+    public Elevage getElevage() {
+        return elevage;
     }
 
-    public void setIdElevage(int idElevage) {
-        this.idElevage = idElevage;
+    public void setElevage(Elevage elevage) {
+        this.elevage = elevage;
     }
+
 }
-

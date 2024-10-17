@@ -1,40 +1,39 @@
 package util.elevage;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Elevage {
-    private int id;
-    private Date dateDebut;
-    private int dureeCycle;
+    private int id_elevage;
+    private LocalDate date_debut;
+    private int duree_cycle;
 
-    public Elevage(int id, Date dateDebut, int dureeCycle) {
-        this.id = id;
-        this.dateDebut = dateDebut;
-        this.dureeCycle = dureeCycle;
+    public Elevage(int id_elevage, LocalDate date_debut, int duree_cycle) {
+        this.setId_elevage(id_elevage);
+        this.setDate_debut(date_debut);
+        this.setDuree_cycle(duree_cycle);
     }
 
-    public int getId() {
-        return id;
+    public int getId_elevage() {
+        return id_elevage;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_elevage(int id_elevage) {
+        this.id_elevage = id_elevage;
     }
 
-    public Date getDateDebut() {
-        return dateDebut;
+    public LocalDate getDate_debut() {
+        return date_debut;
     }
 
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
+    public void setDate_debut(LocalDate date_debut) {
+        this.date_debut = date_debut;
     }
 
-    public int getDureeCycle() {
-        return dureeCycle;
+    public int getDuree_cycle() {
+        return duree_cycle;
     }
 
-    public void setDureeCycle(int dureeCycle) {
-        this.dureeCycle = dureeCycle;
+    public void setDuree_cycle(int duree_cycle) {
+        this.duree_cycle = duree_cycle;
     }
 }
-
