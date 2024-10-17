@@ -5,8 +5,8 @@ public class ChargeAnalytique {
     private String nom;
 
     public ChargeAnalytique(int id, String nom) {
-        this.id = id;
-        this.nom = nom;
+        this.setId(id);
+        this.setNom(nom);
     }
 
     public int getId() {

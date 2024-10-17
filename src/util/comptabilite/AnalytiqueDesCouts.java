@@ -5,8 +5,8 @@ public class AnalytiqueDesCouts {
     private String nom;
 
     public AnalytiqueDesCouts(int id, String nom) {
-        this.id = id;
-        this.nom = nom;
+        this.setId(id);
+        this.setNom(nom);
     }
 
     public int getId() {
