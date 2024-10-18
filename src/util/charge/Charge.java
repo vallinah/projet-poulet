@@ -12,6 +12,7 @@ public class Charge {
     private AnalytiqueDesCouts analytiqueDesCouts;
     private TypeCharge typeCharge;
 
+    public Charge(){}
     
     public Charge(int id, String nom, double prix_unitaire, String unite_oeuvre, ChargeAnalytique chargeAnalytique,
             AnalytiqueDesCouts analytiqueDesCouts, TypeCharge typeCharge) {

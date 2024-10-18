@@ -4,6 +4,9 @@ public class ChargeAnalytique {
     private int id;
     private String nom;
 
+    public ChargeAnalytique() {
+    }
+
     public ChargeAnalytique(int id, String nom) {
         this.setId(id);
         this.setNom(nom);
