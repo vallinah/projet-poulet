@@ -2,49 +2,46 @@ package util.mouvement;
 
 import java.time.LocalDate;
 
-import util.fournisseur.Fournisseur;
-import util.fournisseur.Produit;
+import util.fournisseur.FournisseurProduit;
 
 public class MouvementProduit {
-    private Mouvement mouvement;
-    private Fournisseur fournisseur;
-    private Produit produit;
+    private int id;
+    private boolean entree;
+    private boolean sortie;
+    private FournisseurProduit fournisseurProduit;
     private double quantite;
-    private double prix_unitaire;
-    private LocalDate date_mouvement;
+    private LocalDate dateMouvement;
 
-    public MouvementProduit(Mouvement mouvement, Fournisseur fournisseur, Produit produit, double quantite,
-            double prix_unitaire, LocalDate date_mouvement) {
-        this.setMouvement(mouvement);
-        this.setFournisseur(fournisseur);
-        this.setProduit(produit);
-        this.setQuantite(quantite);
-        this.setPrix_unitaire(prix_unitaire);
-        this.setDate_mouvement(date_mouvement);
+    public int getId() {
+        return id;
     }
 
-    public Mouvement getMouvement() {
-        return mouvement;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setMouvement(Mouvement mouvement) {
-        this.mouvement = mouvement;
+    public boolean isEntree() {
+        return entree;
     }
 
-    public Fournisseur getFournisseur() {
-        return fournisseur;
+    public void setEntree(boolean entree) {
+        this.entree = entree;
     }
 
-    public void setFournisseur(Fournisseur fournisseur) {
-        this.fournisseur = fournisseur;
+    public boolean isSortie() {
+        return sortie;
     }
 
-    public Produit getProduit() {
-        return produit;
+    public void setSortie(boolean sortie) {
+        this.sortie = sortie;
     }
 
-    public void setProduit(Produit produit) {
-        this.produit = produit;
+    public FournisseurProduit getFournisseurProduit() {
+        return fournisseurProduit;
+    }
+
+    public void setFournisseurProduit(FournisseurProduit fournisseurProduit) {
+        this.fournisseurProduit = fournisseurProduit;
     }
 
     public double getQuantite() {
@@ -55,20 +52,25 @@ public class MouvementProduit {
         this.quantite = quantite;
     }
 
-    public double getPrix_unitaire() {
-        return prix_unitaire;
+    public LocalDate getDateMouvement() {
+        return dateMouvement;
     }
 
-    public void setPrix_unitaire(double prix_unitaire) {
-        this.prix_unitaire = prix_unitaire;
+    public void setDateMouvement(LocalDate dateMouvement) {
+        this.dateMouvement = dateMouvement;
     }
 
-    public LocalDate getDate_mouvement() {
-        return date_mouvement;
+    public MouvementProduit(int id, boolean entree, boolean sortie, FournisseurProduit fournisseurProduit,
+            double quantite, LocalDate dateMouvement) {
+        this.setId(id);
+        this.setEntree(entree);
+        this.setSortie(sortie);
+        this.setFournisseurProduit(fournisseurProduit);
+        this.setQuantite(quantite);
+        this.setDateMouvement(dateMouvement);
     }
 
-    public void setDate_mouvement(LocalDate date_mouvement) {
-        this.date_mouvement = date_mouvement;
+    public MouvementProduit() {
     }
 
 }

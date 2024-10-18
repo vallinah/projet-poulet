@@ -6,13 +6,18 @@ import util.charge.Charge;
 
 public class MouvementCharge {
     private Charge charge;
-    private Mouvement mouvement;
+    private boolean entree;
+    private boolean sortie;
     private double quantite;
     private LocalDate dateMouvement;
 
-    public MouvementCharge(Charge charge, Mouvement mouvement, double quantite, LocalDate dateMouvement) {
+    public MouvementCharge() {
+    }
+
+    public MouvementCharge(Charge charge, boolean entree, boolean sortie, double quantite, LocalDate dateMouvement) {
         this.setCharge(charge);
-        this.setMouvement(mouvement);
+        this.setEntree(entree);
+        this.setSortie(sortie);
         this.setQuantite(quantite);
         this.setDateMouvement(dateMouvement);
     }
@@ -25,12 +30,20 @@ public class MouvementCharge {
         this.charge = charge;
     }
 
-    public Mouvement getMouvement() {
-        return mouvement;
+    public boolean getEntree() {
+        return entree;
     }
 
-    public void setMouvement(Mouvement mouvement) {
-        this.mouvement = mouvement;
+    public void setEntree(boolean entree) {
+        this.entree = entree;
+    }
+
+    public boolean getSortie() {
+        return sortie;
+    }
+
+    public void setSortie(boolean sortie) {
+        this.sortie = sortie;
     }
 
     public double getQuantite() {
@@ -48,4 +61,5 @@ public class MouvementCharge {
     public void setDateMouvement(LocalDate dateMouvement) {
         this.dateMouvement = dateMouvement;
     }
+
 }

@@ -1,21 +1,11 @@
 package util.fournisseur;
 
-import java.math.BigDecimal;
-
 public class FournisseurProduit {
     private int id;
-    private String nom;
-    private int idFournisseur;
-    private BigDecimal prixUnitaire;
-    private String descriptionProduit;
-
-    public FournisseurProduit(int id, String nom, int idFournisseur, BigDecimal prixUnitaire, String descriptionProduit) {
-        this.id = id;
-        this.nom = nom;
-        this.idFournisseur = idFournisseur;
-        this.prixUnitaire = prixUnitaire;
-        this.descriptionProduit = descriptionProduit;
-    }
+    private Fournisseur fournisseur;
+    private Produit Produit;
+    private double prixUnitaire;
+    private String uniteOeuvre;
 
     public int getId() {
         return id;
@@ -25,36 +15,48 @@ public class FournisseurProduit {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public Fournisseur getFournisseur() {
+        return fournisseur;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
     }
 
-    public int getIdFournisseur() {
-        return idFournisseur;
+    public Produit getProduit() {
+        return Produit;
     }
 
-    public void setIdFournisseur(int idFournisseur) {
-        this.idFournisseur = idFournisseur;
+    public void setProduit(Produit produit) {
+        Produit = produit;
     }
 
-    public BigDecimal getPrixUnitaire() {
+    public double getPrixUnitaire() {
         return prixUnitaire;
     }
 
-    public void setPrixUnitaire(BigDecimal prixUnitaire) {
+    public void setPrixUnitaire(double prixUnitaire) {
         this.prixUnitaire = prixUnitaire;
     }
 
-    public String getDescriptionProduit() {
-        return descriptionProduit;
+    public String getUniteOeuvre() {
+        return uniteOeuvre;
     }
 
-    public void setDescriptionProduit(String descriptionProduit) {
-        this.descriptionProduit = descriptionProduit;
+    public void setUniteOeuvre(String uniteOeuvre) {
+        this.uniteOeuvre = uniteOeuvre;
     }
+
+    public FournisseurProduit(int id, Fournisseur fournisseur, util.fournisseur.Produit produit, double prixUnitaire,
+            String uniteOeuvre) {
+        this.setId(id);
+        this.setFournisseur(fournisseur);
+        this.setProduit(produit);
+        this.setPrixUnitaire(prixUnitaire);
+        this.setUniteOeuvre(uniteOeuvre);
+    }
+
+    public FournisseurProduit() {
+    }
+
 }
-

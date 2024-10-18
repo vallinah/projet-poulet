@@ -1,16 +1,15 @@
 package util.comptabilite;
 
-import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Demande {
     private int id;
     private int idDepartement;
-    private BigDecimal quantite;
+    private double quantite;
     private String motif;
-    private Date dateDemande;
+    private LocalDate dateDemande;
 
-    public Demande(int id, int idDepartement, BigDecimal quantite, String motif, Date dateDemande) {
+    public Demande(int id, int idDepartement, double quantite, String motif, LocalDate dateDemande) {
         this.id = id;
         this.idDepartement = idDepartement;
         this.quantite = quantite;
@@ -34,11 +33,11 @@ public class Demande {
         this.idDepartement = idDepartement;
     }
 
-    public BigDecimal getQuantite() {
+    public double getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(BigDecimal quantite) {
+    public void setQuantite(double quantite) {
         this.quantite = quantite;
     }
 
@@ -50,12 +49,11 @@ public class Demande {
         this.motif = motif;
     }
 
-    public Date getDateDemande() {
+    public LocalDate getDateDemande() {
         return dateDemande;
     }
 
-    public void setDateDemande(Date dateDemande) {
+    public void setDateDemande(LocalDate dateDemande) {
         this.dateDemande = dateDemande;
     }
 }
-
