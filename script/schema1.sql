@@ -55,6 +55,15 @@ CREATE TABLE produit(
    PRIMARY KEY(id_produit)
 );
 
+CREATE TABLE fournisseur_produit(
+   id_fournisseur_produit INTEGER,
+   id_produit INTEGER,
+   id_fournisseur INTEGER,
+   prix_unitaire Decimal(18,2)  NOT NULL,
+   unite_oeuvre VARCHAR(250)  NOT NULL,
+   PRIMARY KEY(id_produit)
+);
+
 CREATE TABLE poulet(
    id_poulet INTEGER,
    poids_initial NUMERIC(4,3)   NOT NULL,
@@ -128,10 +137,8 @@ CREATE TABLE commande(
 
 CREATE TABLE mouvement_produit_fournisseur(
    id_mouvement INTEGER,
-   id_fournisseur INTEGER,
-   id_produit INTEGER,
+   id_fournisseur_produit INTEGER,
    quantite NUMERIC(15,2)   NOT NULL,
-   prix_unitaire NUMERIC(18,2)   NOT NULL,
    date_mouvement DATE NOT NULL,
    PRIMARY KEY(id_mouvement, id_fournisseur, id_produit),
    FOREIGN KEY(id_mouvement) REFERENCES mouvement(id_mouvement),

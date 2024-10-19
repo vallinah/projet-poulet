@@ -5,9 +5,19 @@ import java.time.LocalDate;
 import util.fournisseur.Fournisseur;
 
 public class Commande {
+    private String id;
     private Demande demande;
     private Fournisseur fournisseur;
     private LocalDate dateCommande;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
     public Demande getDemande() {
         return demande;
@@ -33,7 +43,8 @@ public class Commande {
         this.dateCommande = dateCommande;
     }
 
-    public Commande(Demande demande, Fournisseur fournisseur, LocalDate dateCommande) {
+    public Commande(String id,Demande demande, Fournisseur fournisseur, LocalDate dateCommande) {
+        this.setId('id');
         this.setDemande(demande);
         this.setFournisseur(fournisseur);
         this.setDateCommande(dateCommande);

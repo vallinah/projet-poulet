@@ -5,16 +5,24 @@ import java.time.LocalDate;
 import util.charge.Charge;
 
 public class MouvementCharge {
+    private String id;
     private Charge charge;
     private boolean entree;
     private boolean sortie;
     private double quantite;
     private LocalDate dateMouvement;
+    
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
     public MouvementCharge() {
     }
 
-    public MouvementCharge(Charge charge, boolean entree, boolean sortie, double quantite, LocalDate dateMouvement) {
+    public MouvementCharge(String id,Charge charge, boolean entree, boolean sortie, double quantite, LocalDate dateMouvement) {
         this.setCharge(charge);
         this.setEntree(entree);
         this.setSortie(sortie);

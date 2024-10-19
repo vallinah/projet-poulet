@@ -4,6 +4,9 @@ public class AnalytiqueDesCouts {
     private int id;
     private String nom;
 
+    public AnalytiqueDesCouts() {
+    }
+
     public AnalytiqueDesCouts(int id, String nom) {
         this.setId(id);
         this.setNom(nom);
