@@ -1,24 +1,26 @@
 package util.elevage;
 
 public class Poulet {
-    private int id_poulet;
+    private int id;
     private double poids_initial;
     private double poids_final;
     private Elevage elevage;
 
-    public Poulet(int id_poulet, double poids_initial, double poids_final, Elevage elevage) {
-        this.setId_poulet(id_poulet);
+    public Poulet(){}
+
+    public Poulet(int id, double poids_initial, double poids_final, Elevage elevage) {
+        this.setId(id);
         this.setPoids_initial(poids_initial);
         this.setPoids_final(poids_final);
         this.setElevage(elevage);
     }
 
-    public int getId_poulet() {
-        return id_poulet;
+    public int getId() {
+        return id;
     }
 
-    public void setId_poulet(int id_poulet) {
-        this.id_poulet = id_poulet;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getPoids_initial() {

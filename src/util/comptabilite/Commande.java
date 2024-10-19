@@ -1,38 +1,45 @@
 package util.comptabilite;
 
+import java.time.LocalDate;
+
+import util.fournisseur.Fournisseur;
+
 public class Commande {
-    private int id;
-    private int idDemande;
-    private int idFournisseur;
+    private Demande demande;
+    private Fournisseur fournisseur;
+    private LocalDate dateCommande;
 
-    public Commande(int id, int idDemande, int idFournisseur) {
-        this.id = id;
-        this.idDemande = idDemande;
-        this.idFournisseur = idFournisseur;
+    public Demande getDemande() {
+        return demande;
     }
 
-    public int getId() {
-        return id;
+    public void setDemande(Demande demande) {
+        this.demande = demande;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Fournisseur getFournisseur() {
+        return fournisseur;
     }
 
-    public int getIdDemande() {
-        return idDemande;
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
     }
 
-    public void setIdDemande(int idDemande) {
-        this.idDemande = idDemande;
+    public LocalDate getDateCommande() {
+        return dateCommande;
     }
 
-    public int getIdFournisseur() {
-        return idFournisseur;
+    public void setDateCommande(LocalDate dateCommande) {
+        this.dateCommande = dateCommande;
     }
 
-    public void setIdFournisseur(int idFournisseur) {
-        this.idFournisseur = idFournisseur;
+    public Commande(Demande demande, Fournisseur fournisseur, LocalDate dateCommande) {
+        this.setDemande(demande);
+        this.setFournisseur(fournisseur);
+        this.setDateCommande(dateCommande);
     }
+
+    public Commande() {
+    }
+
 }
-
