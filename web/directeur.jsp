@@ -136,41 +136,29 @@
                 <thead>
                   <tr>
                     <th class="rubriques">DEPARTEMENT</th>
-                    <th>PRODUIT</th>
-                    <th>QUANTITE</th>
-                    <th colspan="2">MOTIF</th>
+                    <th>NOMBRE DE PRODUIT DEMANDE</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
                     <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
                     <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
                     <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
                   </tr>
                   <tr>
                     <th scope="row">4</th>
                     <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
                   </tr>
                   <tr>
                     <th scope="row">5</th>
                     <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
                   </tr>
                 </tbody>
               </table>
