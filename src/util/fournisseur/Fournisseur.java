@@ -6,14 +6,20 @@ public class Fournisseur {
     private String email;
     private String motDePasse;
 
-    public Fournisseur() {
+    public int getId() {
+        return id;
     }
 
-    public Fournisseur(int id, String nom, String email, String motDePasse) {
-        this.setId(id);
-        this.setNom(nom);
-        this.setEmail(email);
-        this.setMotDePasse(motDePasse);
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getEmail() {
@@ -32,27 +38,16 @@ public class Fournisseur {
         this.motDePasse = motDePasse;
     }
 
-    public int getIdFournisseur() {
-        return idFournisseur;
+    public Fournisseur() {
     }
 
-    public void setIdFournisseur(int idFournisseur) {
-        this.idFournisseur = idFournisseur;
+    public Fournisseur(int id, String nom, String email, String motDePasse) {
+        this.setId(id);
+        this.setNom(nom);
+        this.setEmail(email);
+        this.setMotDePasse(motDePasse);
     }
 
-    public String getNomFournisseur() {
-        return nomFournisseur;
-    }
 
-    public void setNomFournisseur(String nomFournisseur) {
-        this.nomFournisseur = nomFournisseur;
-    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

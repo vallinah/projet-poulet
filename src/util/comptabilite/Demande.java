@@ -9,6 +9,9 @@ public class Demande {
     private String motif;
     private LocalDate dateDemande;
 
+    public Demande() {
+    }
+
     public Demande(int id, int idDepartement, double quantite, String motif, LocalDate dateDemande) {
         this.id = id;
         this.idDepartement = idDepartement;
