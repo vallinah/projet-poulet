@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import connexion.Connexion;
 import util.comptabilite.Commande;
+import util.comptabilite.Demande;
+import util.fournisseur.Fournisseur;
 
 public class CommandeDAO {
 
