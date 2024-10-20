@@ -91,3 +91,30 @@ INSERT INTO charge_repartition (pourcentage_demarrage, pourcentage_transition, p
 (18.00, 37.00, 45.00, 12),  -- Répartition pour la charge avec id_charge = 12
 (27.00, 43.00, 30.00, 13);  -- Répartition pour la charge avec id_charge = 13
 
+INSERT INTO elevage (date_debut, duree_cycle) VALUES
+('2024-01-01', 42),  -- Elevage 1, durée de 42 jours
+('2024-02-15', 30),  -- Elevage 2, durée de 30 jours
+('2024-03-10', 60);  -- Elevage 3, durée de 60 jours
+
+INSERT INTO poulet (poids_initial, poids_final, id_elevage) VALUES
+(1.500, 2.200, 1),  -- Poulet 1
+(1.450, 2.150, 1),  -- Poulet 2
+(1.600, 2.300, 1),  -- Poulet 3
+(1.520, 2.180, 1),  -- Poulet 4
+(1.470, 2.120, 1),  -- Poulet 5
+(1.580, 2.250, 1),  -- Poulet 6
+(1.600, 2.350, 2),  -- Poulet 7
+(1.650, 2.400, 2),  -- Poulet 8
+(1.580, 2.200, 2),  -- Poulet 9
+(1.620, 2.310, 2),  -- Poulet 10
+(1.590, 2.290, 2),  -- Poulet 11
+(1.610, 2.340, 2),  -- Poulet 12
+(1.720, 2.500, 3),  -- Poulet 13
+(1.800, 2.600, 3),  -- Poulet 14
+(1.750, 2.550, 3),  -- Poulet 15
+(1.730, 2.520, 3),  -- Poulet 16
+(1.740, 2.530, 3),  -- Poulet 17
+(1.690, 2.490, 3),  -- Poulet 18
+(1.680, 2.480, 3),  -- Poulet 19
+(1.700, 2.500, 3);  -- Poulet 20
+

@@ -1,10 +1,10 @@
 package dao.comptabilite;
 
+import connexion.Connexion;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import connexion.Connexion;
 import util.comptabilite.Demande;
 
 public class DemandeDAO {
@@ -104,6 +104,81 @@ public class DemandeDAO {
             connexion.deconnexion();
         }
         return demande;
+    }
+
+   public List<Demande> getByDepartement(int idDepartement) {
+        List<Demande> demandes = new ArrayList<>();
+        Connection conn = connexion.getConnection();
+        String sql = "SELECT * FROM demande WHERE id_departement = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idDepartement);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Demande demande = new Demande();
+                demande.setId(rs.getInt("id_demande"));
+                demande.setIdDepartement(rs.getInt("id_departement"));
+                demande.setQuantite(rs.getDouble("quantite"));
+                demande.setMotif(rs.getString("motif"));
+                demande.setDateDemande(rs.getDate("date_demande").toLocalDate());
+                demandes.add(demande);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connexion.deconnexion();
+        }
+        return demandes;
+    }
+
+    public List<Demande> getByDateBetween(LocalDate debut, LocalDate fin) {
+        List<Demande> demandes = new ArrayList<>();
+        Connection conn = connexion.getConnection();
+        String sql = "SELECT * FROM demande WHERE date_demande BETWEEN ? AND ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setDate(1, java.sql.Date.valueOf(debut));
+            stmt.setDate(2, java.sql.Date.valueOf(fin));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Demande demande = new Demande();
+                demande.setId(rs.getInt("id_demande"));
+                demande.setIdDepartement(rs.getInt("id_departement"));
+                demande.setQuantite(rs.getDouble("quantite"));
+                demande.setMotif(rs.getString("motif"));
+                demande.setDateDemande(rs.getDate("date_demande").toLocalDate());
+                demandes.add(demande);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connexion.deconnexion();
+        }
+        return demandes;
+    }
+
+    public List<Demande> getByDateBetweenDepartement(int idDepartement, LocalDate debut, LocalDate fin) {
+        List<Demande> demandes = new ArrayList<>();
+        Connection conn = connexion.getConnection();
+        String sql = "SELECT * FROM demande WHERE id_departement = ? AND date_demande BETWEEN ? AND ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idDepartement);
+            stmt.setDate(2, java.sql.Date.valueOf(debut));
+            stmt.setDate(3, java.sql.Date.valueOf(fin));
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Demande demande = new Demande();
+                demande.setId(rs.getInt("id_demande"));
+                demande.setIdDepartement(rs.getInt("id_departement"));
+                demande.setQuantite(rs.getDouble("quantite"));
+                demande.setMotif(rs.getString("motif"));
+                demande.setDateDemande(rs.getDate("date_demande").toLocalDate());
+                demandes.add(demande);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connexion.deconnexion();
+        }
+        return demandes;
     }
 }
 
