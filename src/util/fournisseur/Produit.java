@@ -3,10 +3,20 @@ package util.fournisseur;
 public class Produit {
     private int id;
     private String nom;
+    private String description;
 
-    public Produit(int id, String nom) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Produit(int id, String nom,String description) {
         this.setId(id);
         this.setNom(nom);
+        this.setDescription(description);
     }
 
     public Produit() {
