@@ -1,5 +1,4 @@
 package dao.mouvement;
-package dao.mouvement.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -18,8 +17,8 @@ public class MouvementChargeDAO {
         String sql = "INSERT INTO mouvement_charge (id_charge, entree, sortie, quantite, dateMouvement) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, mouvementCharge.getCharge().getId()); // Assurez-vous que Charge a une méthode getId()
-            stmt.setBoolean(2, mouvementCharge.isEntree());
-            stmt.setBoolean(3, mouvementCharge.isSortie());
+            stmt.setBoolean(2, mouvementCharge.getEntree());
+            stmt.setBoolean(3, mouvementCharge.getSortie());
             stmt.setDouble(4, mouvementCharge.getQuantite());
             stmt.setDate(5, Date.valueOf(mouvementCharge.getDateMouvement())); // Conversion de LocalDate à Date
             stmt.executeUpdate();
@@ -36,8 +35,8 @@ public class MouvementChargeDAO {
         String sql = "UPDATE mouvement_charge SET id_charge=?, entree=?, sortie=?, quantite=?, dateMouvement=? WHERE id=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, mouvementCharge.getCharge().getId());
-            stmt.setBoolean(2, mouvementCharge.isEntree());
-            stmt.setBoolean(3, mouvementCharge.isSortie());
+            stmt.setBoolean(2, mouvementCharge.getEntree());
+            stmt.setBoolean(3, mouvementCharge.getSortie());
             stmt.setDouble(4, mouvementCharge.getQuantite());
             stmt.setDate(5, Date.valueOf(mouvementCharge.getDateMouvement()));
             stmt.setInt(6, mouvementCharge.getId()); // Vous devez ajouter un champ id dans MouvementCharge
