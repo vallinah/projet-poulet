@@ -9,6 +9,10 @@ public class Produit {
         this.setNom(nom);
     }
 
+    public Produit() {
+        //TODO Auto-generated constructor stub
+    }
+
     public int getId() {
         return id;
     }

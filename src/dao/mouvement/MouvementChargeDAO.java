@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import connexion.Connexion;
+import dao.charge.ChargeDAO;
 import util.charge.Charge;
 import util.mouvement.MouvementCharge;
 
@@ -71,8 +72,7 @@ public class MouvementChargeDAO {
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 MouvementCharge mouvementCharge = new MouvementCharge();
-                Charge charge = new Charge(); // Vous devez avoir une classe Charge avec un constructeur ou des setters appropriés
-                charge.setId(rs.getInt("id_charge")); // Assurez-vous que Charge a une méthode setId()
+                Charge charge = new ChargeDAO().getById(rs.getInt("id_charge"));
                 mouvementCharge.setCharge(charge);
                 mouvementCharge.setEntree(rs.getBoolean("entree"));
                 mouvementCharge.setSortie(rs.getBoolean("sortie"));
@@ -97,8 +97,7 @@ public class MouvementChargeDAO {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 mouvementCharge = new MouvementCharge();
-                Charge charge = new Charge();
-                charge.setId(rs.getInt("id_charge"));
+                Charge charge = new ChargeDAO().getById(rs.getInt("id_charge"));
                 mouvementCharge.setCharge(charge);
                 mouvementCharge.setEntree(rs.getBoolean("entree"));
                 mouvementCharge.setSortie(rs.getBoolean("sortie"));
