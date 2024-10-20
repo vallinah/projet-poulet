@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import connexion.Connexion;
+import dao.fournisseur.FournisseurProduitDAO;
 import util.fournisseur.FournisseurProduit;
 import util.mouvement.MouvementProduit;
 
@@ -74,11 +75,8 @@ public class MouvementProduitDAO {
                 mouvementProduit.setId(rs.getInt("id"));
                 mouvementProduit.setEntree(rs.getBoolean("entree"));
                 mouvementProduit.setSortie(rs.getBoolean("sortie"));
-
-                FournisseurProduit fournisseurProduit = new FournisseurProduit(); // Assurez-vous d'avoir la classe FournisseurProduit
-                fournisseurProduit.setId(rs.getInt("id_fournisseur_produit")); // Assurez-vous que FournisseurProduit a une méthode setId()
+                FournisseurProduit fournisseurProduit = new FournisseurProduitDAO().getById(rs.getInt("id_fournisseur_produit")); // Assurez-vous d'avoir la classe FournisseurProduit
                 mouvementProduit.setFournisseurProduit(fournisseurProduit);
-
                 mouvementProduit.setQuantite(rs.getDouble("quantite"));
                 mouvementProduit.setDateMouvement(rs.getDate("dateMouvement").toLocalDate());
                 mouvements.add(mouvementProduit);
@@ -104,8 +102,7 @@ public class MouvementProduitDAO {
                 mouvementProduit.setEntree(rs.getBoolean("entree"));
                 mouvementProduit.setSortie(rs.getBoolean("sortie"));
 
-                FournisseurProduit fournisseurProduit = new FournisseurProduit();
-                fournisseurProduit.setId(rs.getInt("id_fournisseur_produit"));
+                FournisseurProduit fournisseurProduit = new FournisseurProduitDAO().getById(rs.getInt("id_fournisseur_produit")); 
                 mouvementProduit.setFournisseurProduit(fournisseurProduit);
 
                 mouvementProduit.setQuantite(rs.getDouble("quantite"));
