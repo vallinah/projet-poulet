@@ -5,7 +5,7 @@ setlocal enabledelayedexpansion
 set "work_dir=."
 set "temp=%work_dir%\temp"
 set "web=%work_dir%\web"
-set "web_xml=%work_dir%\web.xml"
+set "web_xml=%work_dir%\web\web.xml"
 set "lib=%work_dir%\lib"
 set "web_apps=C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps"
 set "war_name=projet-poulet"
