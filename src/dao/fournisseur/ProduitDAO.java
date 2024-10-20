@@ -1,9 +1,9 @@
 package dao.fournisseur;
 
+import connexion.Connexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import connexion.Connexion;
 import util.fournisseur.Produit;
 
 public class ProduitDAO {
@@ -11,9 +11,10 @@ public class ProduitDAO {
 
     public void insert(Produit produit) {
         Connection conn = connexion.getConnection();
-        String sql = "INSERT INTO produit (nom_produit) VALUES (?)";
+        String sql = "INSERT INTO produit (nom_produit, description) VALUES (?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, produit.getNom());
+            stmt.setString(2, produit.getDescription());
             stmt.executeUpdate();
             System.out.println("Produit inséré avec succès.");
         } catch (SQLException e) {
@@ -25,10 +26,11 @@ public class ProduitDAO {
 
     public void update(Produit produit) {
         Connection conn = connexion.getConnection();
-        String sql = "UPDATE produit SET nom_produit=? WHERE id_produit=?";
+        String sql = "UPDATE produit SET nom_produit=? , description=? WHERE id_produit=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, produit.getNom());
-            stmt.setInt(2, produit.getId());
+            stmt.setString(2, produit.getDescription());
+            stmt.setInt(3, produit.getId());
             stmt.executeUpdate();
             System.out.println("Produit mis à jour avec succès.");
         } catch (SQLException e) {
@@ -62,6 +64,7 @@ public class ProduitDAO {
                 Produit produit = new Produit();
                 produit.setId(rs.getInt("id_produit"));
                 produit.setNom(rs.getString("nom_produit"));
+                produit.setDescription(rs.getString("description"));
                 produits.add(produit);
             }
         } catch (SQLException e) {
@@ -83,6 +86,7 @@ public class ProduitDAO {
                 produit = new Produit();
                 produit.setId(rs.getInt("id_produit"));
                 produit.setNom(rs.getString("nom_produit"));
+                produit.setDescription(rs.getString("description"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
