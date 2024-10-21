@@ -9,7 +9,7 @@ public class Connexion {
     // Informations de connexion à PostgreSQL
     private static final String URL = "jdbc:postgresql://localhost:5432/poulailler";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "vallinah";
+    private static final String PASSWORD = "nantenaina";
 
     // Variable pour stocker la connexion
     private Connection connection;

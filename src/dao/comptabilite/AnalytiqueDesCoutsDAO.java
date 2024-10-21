@@ -1,22 +1,23 @@
-package dao.charge;
+package dao.comptabilite;
 
-import connexion.Connexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import util.comptabilite.ChargeAnalytique;
 
-public class ChargeAnalytiqueDAO {
+import connexion.Connexion;
+import util.comptabilite.AnalytiqueDesCouts;
+
+public class AnalytiqueDesCoutsDAO {
 
     private Connexion connexion = new Connexion();
 
-    public void insert(ChargeAnalytique chargeAnalytique) {
+    public void insert(AnalytiqueDesCouts analytiqueDesCouts) {
         Connection conn = connexion.getConnection();
-        String sql = "INSERT INTO charge_analytique (nom) VALUES (?)";
+        String sql = "INSERT INTO analytique_des_cout (nom) VALUES (?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, chargeAnalytique.getNom());
+            stmt.setString(1, analytiqueDesCouts.getNom());
             stmt.executeUpdate();
-            System.out.println("Charge analytique insérée avec succès.");
+            System.out.println("Analytique des coûts inséré avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -24,14 +25,14 @@ public class ChargeAnalytiqueDAO {
         }
     }
 
-    public void update(ChargeAnalytique chargeAnalytique) {
+    public void update(AnalytiqueDesCouts analytiqueDesCouts) {
         Connection conn = connexion.getConnection();
-        String sql = "UPDATE charge_analytique SET nom=? WHERE id_charge_analytique=?";
+        String sql = "UPDATE analytique_des_cout SET nom=? WHERE id_analytique_des_couts=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, chargeAnalytique.getNom());
-            stmt.setInt(2, chargeAnalytique.getId());
+            stmt.setString(1, analytiqueDesCouts.getNom());
+            stmt.setInt(2, analytiqueDesCouts.getId());
             stmt.executeUpdate();
-            System.out.println("Charge analytique mise à jour avec succès.");
+            System.out.println("Analytique des coûts mis à jour avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -41,11 +42,11 @@ public class ChargeAnalytiqueDAO {
 
     public void delete(int id) {
         Connection conn = connexion.getConnection();
-        String sql = "DELETE FROM charge_analytique WHERE id_charge_analytique=?";
+        String sql = "DELETE FROM analytique_des_cout WHERE id_analytique_des_couts=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("Charge analytique supprimée avec succès.");
+            System.out.println("Analytique des coûts supprimé avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -53,43 +54,43 @@ public class ChargeAnalytiqueDAO {
         }
     }
 
-    public List<ChargeAnalytique> getAll() {
-        List<ChargeAnalytique> charges = new ArrayList<>();
+    public List<AnalytiqueDesCouts> getAll() {
+        List<AnalytiqueDesCouts> analytiques = new ArrayList<>();
         Connection conn = connexion.getConnection();
-        String sql = "SELECT * FROM charge_analytique";
+        String sql = "SELECT * FROM analytique_des_cout";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                ChargeAnalytique charge = new ChargeAnalytique();
-                charge.setId(rs.getInt("id_charge_analytique"));
-                charge.setNom(rs.getString("nom"));
-                charges.add(charge);
+                AnalytiqueDesCouts analytique = new AnalytiqueDesCouts();
+                analytique.setId(rs.getInt("id_analytique_des_couts"));
+                analytique.setNom(rs.getString("nom"));
+                analytiques.add(analytique);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             connexion.deconnexion();
         }
-        return charges;
+        return analytiques;
     }
 
-    public ChargeAnalytique getById(int id) {
-        ChargeAnalytique charge = null;
+    public AnalytiqueDesCouts getById(int id) {
+        AnalytiqueDesCouts analytique = null;
         Connection conn = connexion.getConnection();
-        String sql = "SELECT * FROM charge_analytique WHERE id_charge_analytique=?";
+        String sql = "SELECT * FROM analytique_des_cout WHERE id_analytique_des_couts=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                charge = new ChargeAnalytique();
-                charge.setId(rs.getInt("id_charge_analytique"));
-                charge.setNom(rs.getString("nom"));
+                analytique = new AnalytiqueDesCouts();
+                analytique.setId(rs.getInt("id_analytique_des_couts"));
+                analytique.setNom(rs.getString("nom"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             connexion.deconnexion();
         }
-        return charge;
+        return analytique;
     }
 }

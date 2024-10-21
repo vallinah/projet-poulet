@@ -1,22 +1,23 @@
-package dao.charge;
+package dao.elevage;
 
-import connexion.Connexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import util.comptabilite.ChargeAnalytique;
+import connexion.Connexion;
+import util.elevage.Elevage;
 
-public class ChargeAnalytiqueDAO {
+public class ElevageDAO {
 
     private Connexion connexion = new Connexion();
 
-    public void insert(ChargeAnalytique chargeAnalytique) {
+    public void insert(Elevage elevage) {
         Connection conn = connexion.getConnection();
-        String sql = "INSERT INTO charge_analytique (nom) VALUES (?)";
+        String sql = "INSERT INTO elevage (date_debut, duree_cycle) VALUES (?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, chargeAnalytique.getNom());
+            stmt.setDate(1, Date.valueOf(elevage.getDate_debut()));
+            stmt.setInt(2, elevage.getDuree_cycle());
             stmt.executeUpdate();
-            System.out.println("Charge analytique insérée avec succès.");
+            System.out.println("Élevage inséré avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -24,14 +25,15 @@ public class ChargeAnalytiqueDAO {
         }
     }
 
-    public void update(ChargeAnalytique chargeAnalytique) {
+    public void update(Elevage elevage) {
         Connection conn = connexion.getConnection();
-        String sql = "UPDATE charge_analytique SET nom=? WHERE id_charge_analytique=?";
+        String sql = "UPDATE elevage SET date_debut=?, duree_cycle=? WHERE id_elevage=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, chargeAnalytique.getNom());
-            stmt.setInt(2, chargeAnalytique.getId());
+            stmt.setDate(1, Date.valueOf(elevage.getDate_debut()));
+            stmt.setInt(2, elevage.getDuree_cycle());
+            stmt.setInt(3, elevage.getId());
             stmt.executeUpdate();
-            System.out.println("Charge analytique mise à jour avec succès.");
+            System.out.println("Élevage mis à jour avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -41,11 +43,11 @@ public class ChargeAnalytiqueDAO {
 
     public void delete(int id) {
         Connection conn = connexion.getConnection();
-        String sql = "DELETE FROM charge_analytique WHERE id_charge_analytique=?";
+        String sql = "DELETE FROM elevage WHERE id_elevage=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("Charge analytique supprimée avec succès.");
+            System.out.println("Élevage supprimé avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -53,43 +55,45 @@ public class ChargeAnalytiqueDAO {
         }
     }
 
-    public List<ChargeAnalytique> getAll() {
-        List<ChargeAnalytique> charges = new ArrayList<>();
+    public List<Elevage> getAll() {
+        List<Elevage> elevages = new ArrayList<>();
         Connection conn = connexion.getConnection();
-        String sql = "SELECT * FROM charge_analytique";
+        String sql = "SELECT * FROM elevage";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                ChargeAnalytique charge = new ChargeAnalytique();
-                charge.setId(rs.getInt("id_charge_analytique"));
-                charge.setNom(rs.getString("nom"));
-                charges.add(charge);
+                Elevage elevage = new Elevage();
+                elevage.setId(rs.getInt("id_elevage"));
+                elevage.setDate_debut(rs.getDate("date_debut").toLocalDate());
+                elevage.setDuree_cycle(rs.getInt("duree_cycle"));
+                elevages.add(elevage);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             connexion.deconnexion();
         }
-        return charges;
+        return elevages;
     }
 
-    public ChargeAnalytique getById(int id) {
-        ChargeAnalytique charge = null;
+    public Elevage getById(int id) {
+        Elevage elevage = null;
         Connection conn = connexion.getConnection();
-        String sql = "SELECT * FROM charge_analytique WHERE id_charge_analytique=?";
+        String sql = "SELECT * FROM elevage WHERE id_elevage=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                charge = new ChargeAnalytique();
-                charge.setId(rs.getInt("id_charge_analytique"));
-                charge.setNom(rs.getString("nom"));
+                elevage = new Elevage();
+                elevage.setId(rs.getInt("id_elevage"));
+                elevage.setDate_debut(rs.getDate("date_debut").toLocalDate());
+                elevage.setDuree_cycle(rs.getInt("duree_cycle"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             connexion.deconnexion();
         }
-        return charge;
+        return elevage;
     }
 }

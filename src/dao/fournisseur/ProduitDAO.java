@@ -1,22 +1,22 @@
-package dao.charge;
+package dao.fournisseur;
 
 import connexion.Connexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import util.comptabilite.ChargeAnalytique;
+import util.fournisseur.Produit;
 
-public class ChargeAnalytiqueDAO {
-
+public class ProduitDAO {
     private Connexion connexion = new Connexion();
 
-    public void insert(ChargeAnalytique chargeAnalytique) {
+    public void insert(Produit produit) {
         Connection conn = connexion.getConnection();
-        String sql = "INSERT INTO charge_analytique (nom) VALUES (?)";
+        String sql = "INSERT INTO produit (nom_produit, description) VALUES (?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, chargeAnalytique.getNom());
+            stmt.setString(1, produit.getNom());
+            stmt.setString(2, produit.getDescription());
             stmt.executeUpdate();
-            System.out.println("Charge analytique insérée avec succès.");
+            System.out.println("Produit inséré avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -24,14 +24,15 @@ public class ChargeAnalytiqueDAO {
         }
     }
 
-    public void update(ChargeAnalytique chargeAnalytique) {
+    public void update(Produit produit) {
         Connection conn = connexion.getConnection();
-        String sql = "UPDATE charge_analytique SET nom=? WHERE id_charge_analytique=?";
+        String sql = "UPDATE produit SET nom_produit=? , description=? WHERE id_produit=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, chargeAnalytique.getNom());
-            stmt.setInt(2, chargeAnalytique.getId());
+            stmt.setString(1, produit.getNom());
+            stmt.setString(2, produit.getDescription());
+            stmt.setInt(3, produit.getId());
             stmt.executeUpdate();
-            System.out.println("Charge analytique mise à jour avec succès.");
+            System.out.println("Produit mis à jour avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -41,11 +42,11 @@ public class ChargeAnalytiqueDAO {
 
     public void delete(int id) {
         Connection conn = connexion.getConnection();
-        String sql = "DELETE FROM charge_analytique WHERE id_charge_analytique=?";
+        String sql = "DELETE FROM produit WHERE id_produit=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            System.out.println("Charge analytique supprimée avec succès.");
+            System.out.println("Produit supprimé avec succès.");
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -53,43 +54,45 @@ public class ChargeAnalytiqueDAO {
         }
     }
 
-    public List<ChargeAnalytique> getAll() {
-        List<ChargeAnalytique> charges = new ArrayList<>();
+    public List<Produit> getAll() {
+        List<Produit> produits = new ArrayList<>();
         Connection conn = connexion.getConnection();
-        String sql = "SELECT * FROM charge_analytique";
+        String sql = "SELECT * FROM produit";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                ChargeAnalytique charge = new ChargeAnalytique();
-                charge.setId(rs.getInt("id_charge_analytique"));
-                charge.setNom(rs.getString("nom"));
-                charges.add(charge);
+                Produit produit = new Produit();
+                produit.setId(rs.getInt("id_produit"));
+                produit.setNom(rs.getString("nom_produit"));
+                produit.setDescription(rs.getString("description"));
+                produits.add(produit);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             connexion.deconnexion();
         }
-        return charges;
+        return produits;
     }
 
-    public ChargeAnalytique getById(int id) {
-        ChargeAnalytique charge = null;
+    public Produit getById(int id) {
+        Produit produit = null;
         Connection conn = connexion.getConnection();
-        String sql = "SELECT * FROM charge_analytique WHERE id_charge_analytique=?";
+        String sql = "SELECT * FROM produit WHERE id_produit=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                charge = new ChargeAnalytique();
-                charge.setId(rs.getInt("id_charge_analytique"));
-                charge.setNom(rs.getString("nom"));
+                produit = new Produit();
+                produit.setId(rs.getInt("id_produit"));
+                produit.setNom(rs.getString("nom_produit"));
+                produit.setDescription(rs.getString("description"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             connexion.deconnexion();
         }
-        return charge;
+        return produit;
     }
 }
