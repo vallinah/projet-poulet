@@ -7,7 +7,7 @@ import java.util.List;
 import dao.charge.ChargeAnalytiqueDAO;
 import dao.charge.ChargeDAO;
 import dao.charge.TypeChargeDAO;
-import dao.comptabilite.GestionFinances;
+import dao.comptabilite.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

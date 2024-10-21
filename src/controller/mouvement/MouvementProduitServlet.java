@@ -2,13 +2,15 @@ package controller.mouvement;
 
 
 import dao.mouvement.MouvementProduitDAO;
+import jakarta.servlet.annotation.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import util.fournisseur.FournisseurProduit;
 import util.mouvement.MouvementProduit;
 
-import jarkarta.servlet.ServletException;
-import jarkarta.servlet.http.HttpServlet;
-import jarkarta.servlet.http.HttpServletRequest;
-import jarkarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.time.LocalDate;
 

@@ -1,5 +1,6 @@
 package controller.charge;
 
+import dao.charge.ChargeDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,8 +46,8 @@ public class ChargeServlet extends HttpServlet {
         charge.setTypeCharge(typeCharge);
 
         // Logique pour traiter les données (par exemple, enregistrer dans la base de données)
-        ChargeDao chargeDao = new ChargeDao();
-        chargeDao.save(charge); // Implémentez la méthode save pour insérer dans la base de données
+        ChargeDAO chargeDao = new ChargeDAO();
+        chargeDao.insert(charge); // Implémentez la méthode save pour insérer dans la base de données
 
         // Redirection ou affichage d'un message après le traitement
         response.sendRedirect("confirmation.jsp"); // Redirection vers une page de confirmation
