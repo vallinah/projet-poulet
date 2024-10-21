@@ -4,56 +4,73 @@ setlocal enabledelayedexpansion
 :: Déclaration des variables
 set "work_dir=."
 set "temp=%work_dir%\temp"
-set "web=%work_dir%\web"
-set "web_xml=%work_dir%\web\web.xml"
 set "lib=%work_dir%\lib"
-set "web_apps=C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps"
-set "war_name=projet-poulet"
 set "src=%work_dir%\src"
+set "web_xml=%work_dir%\webfournisseur\web.xml"
+set "web_apps=C:\Program Files\Apache Software Foundation\Tomcat 10.1\webapps"
+set "war_name=pouletFournisseur"
 
 :: Effacer le dossier [temp]
 if exist "%temp%" (
     rd /s /q "%temp%"
 )
 
-:: Créer la structure de dossier
+:: Création de la structure de dossier temporaire
 mkdir "%temp%\WEB-INF\lib"
 mkdir "%temp%\WEB-INF\classes"
+mkdir "%temp%\assets"
+mkdir "%temp%\forms"
 
-:: Copier le contenu de [web] dans [temp]
-xcopy /s /y "%web%\*.*" "%temp%"
+:: Copie de web.xml vers temp/WEB-INF...
+xcopy /y "%web_xml%" "%temp%\WEB-INF"
 
-:: Copier le fichier [web_xml] vers [temp] + "\WEB-INF"
-copy "%web_xml%" "%temp%\WEB-INF"
+:: Copie des fichiers .jsp vers le dossier temporaire
+xcopy /y "%work_dir%\webfournisseur\*.jsp" "%temp%\" /I
 
-:: Copier les fichiers .jar dans [lib] vers [temp] + "\WEB-INF\lib"
-xcopy /s /i "%lib%\*.jar" "%temp%\WEB-INF\lib"
+:: Copie des dossiers assets et forms vers le dossier temporaire
+xcopy "%work_dir%\webfournisseur\assets" "%temp%\assets" /E /I /Y
+xcopy "%work_dir%\webfournisseur\forms" "%temp%\forms" /E /I /Y
 
-:: Copier la structure de dossier de src dans WEB-INF/classes
-xcopy /t /e "%src%" "%temp%\WEB-INF\classes"
+:: Copie des fichiers .jar dans lib vers le dossier temporaire
+xcopy /s /y "%lib%\*.jar" "%temp%\WEB-INF\lib"
 
-:: Compilation des fichiers .java dans src avec les options suivantes
-:: Note: Assurez-vous que le chemin vers le compilateur Java (javac) est correctement configuré dans votre variable d'environnement PATH.
-:: Créer une liste de tous les fichiers .java dans le répertoire src et ses sous-répertoires
+:: Compilation des fichiers .java
 dir /s /B "%src%\*.java" > sources.txt
-:: Exécuter la commande javac
-javac -d "%temp%\WEB-INF\classes" -cp "%lib%\*" @sources.txt
-:: Supprimer le fichiers sources.txt après la compilation
+if not exist sources.txt (
+    echo Aucun fichier .java trouvé dans le répertoire src.
+    exit /b 1
+)
+
+:: Création du classpath pour la compilation
+dir /s /B "%lib%\*.jar" > libs.txt
+set "classpath="
+for /F "delims=" %%i in (libs.txt) do set "classpath=!classpath!.;%%i;"
+
+:: Vérification de l'existence de javac
+where javac >nul 2>nul
+if %errorlevel% neq 0 (
+    echo Erreur: javac n'est pas trouvé dans le PATH.
+    exit /b 1
+)
+
+:: Exécution de la compilation
+javac -d "%temp%\WEB-INF\classes" -cp "%classpath%" @sources.txt
+
+:: Nettoyage des fichiers temporaires de compilation
 del sources.txt
+del libs.txt
 
-:: Créer un fichier .war nommé [war_name].war à partir du dossier [temp] et son contenu dans le dossier [work_dir]
+:: Création du fichier .war
 cd "%temp%"
-jar cf "%work_dir%\%war_name%.war" *
+jar -cvf "%work_dir%\%war_name%.war" *
+cd "%work_dir%"
 
-:: Effacer le fichier .war dans [web_apps] s'il existe
+:: Suppression et déploiement du fichier .war
 if exist "%web_apps%\%war_name%.war" (
     del /f /q "%web_apps%\%war_name%.war"
 )
-
-:: Copier le fichier .war vers [web_apps]
 copy /y "%work_dir%\%war_name%.war" "%web_apps%"
-
-del "%work_dir%\%war_name%.war"
+del /f /q "%work_dir%\%war_name%.war"
 
 echo Déploiement terminé.
 pause
