@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import dao.charge.ChargeDAO;
+import dao.mouvement.MouvementChargeDAO;
 
 public class MouvementChargeServlet extends HttpServlet {
 

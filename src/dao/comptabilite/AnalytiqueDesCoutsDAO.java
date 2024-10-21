@@ -12,8 +12,9 @@ import connexion.Connexion;
 import util.comptabilite.AnalytiqueDesCouts;
 
 
+
 public class AnalytiqueDesCoutsDAO {
-    Connexion connexion;
+    Connexion connexion = new Connexion();
     // Méthode pour obtenir tous les charges analytiques
     public List<AnalytiqueDesCouts> getAll() {
         List<AnalytiqueDesCouts> charges = new ArrayList<>();
